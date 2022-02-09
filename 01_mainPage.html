@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Main</title>
+    <script src="js/jquery-3.4.0.js"></script>
+
+    
+
+
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Inconsolata|Overlock');
+    @import url('https://fonts.googleapis.com/css?family=Fauna+One');
+    @import url('https://fonts.googleapis.com/css?family=Noto+Serif+KR');
+    @import url('https://fonts.googleapis.com/css?family=Anton|Lobster');
+
+    html{
+        background-image: url("media/image/back.gif");
+        /* background-image: url("media/image/bg.jpg"); */
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment:fixed;
+        z-index: -99999;
+    }
+    #container{
+        margin: 0 auto;
+        margin-top: 50px;
+        width: 700px;
+        height: 1000px;
+        text-align: center;
+        border: 3px dashed;
+        background: rgba(255, 255, 255, 0.616);
+
+    }
+
+    #copyright{
+        margin: 10px auto 0;
+        /* border: 5px solid; */
+        width: 700px;
+        height: 100px;
+
+        text-align: center;
+        padding: 10px;
+
+        font-family: "Inconsolata",'Overlock';
+    }
+    #head{
+        width:700px;
+        height: 250px;
+        margin: 0px;
+
+        position: relative;
+        
+    }
+
+    #hi{
+        font-family: "Anton";
+        font-size: 60px;
+        font-style: italic;
+        font-weight: bold;
+    }
+
+    #id{
+        margin-top: 50px;
+        margin-left: 60px;
+    }
+
+    .myPicture{
+        /* margin: 20px; */
+        width: 500px;
+        height: 500px;
+        margin: 0 auto;
+        margin-top: 80px;
+
+    }
+
+    #navi{
+        width: 700px;
+        height: 90px;
+        text-align: center;
+    }
+    .menu{
+        width: 233px;
+        height: 90px;
+        /* background: greenyellow; */
+        float: left;
+        /* padding: 10px; */
+    }
+
+    .menuIcon{
+        margin: 0 auto;
+        padding: 0;
+    }
+    
+    #content{
+        width: 700px; 
+        height: 660px;
+    }
+    
+
+    #before{
+        float: left;
+        width: 75px;
+        height: 660px;
+        /* margin-top: 250px;      */
+    }
+    #next{
+        float: left;
+        width: 75px;
+        height: 660px;
+        /* margin-top: 250px; */
+
+    }
+    .Image{
+        margin-top: 250px;
+    }
+
+    #cont{
+        float: left;
+        width: 550px;
+        height: 660px;
+        overflow: hidden;
+        /* position: relative; */
+
+    }
+
+    .intro{
+        width: 550px;
+        height: 660px;
+        /* background-color: brown; */
+        position: relative;
+    }
+
+    .card{
+        width: 550px;
+        height: 660px;
+        /* background-color: aqua; */
+
+        display: none;
+
+    }
+
+    .show{
+        display: inline-block;
+    }
+
+    #myProfile{
+        /* background-color: blueviolet; */
+        font-family: "OverLock", "Anton";
+        font-style: italic;
+        text-align: center;
+        padding-top: 30px;
+    }
+
+    #my{
+        padding: 10px;
+    }
+
+
+    .musicImage{
+        width: 40px;
+        height: 40px;
+        float: left;
+        margin: 5px;
+        margin-top: 10px;
+    }
+
+    .toggleImage{
+        width: 50x;
+        height: 50px;
+        float: right;
+        margin-top: 10px;
+    }
+    .logoutImage{
+        width: 50px;
+        height: 50px;
+        float: right;
+        margin: 10px;
+        margin-right: 15px;
+
+    }
+    #toggle2{
+        display: none;
+    }
+
+    .myPicture{
+        display: none;
+        cursor: url(media/image/click.png), auto;
+    }
+    #me1{
+        display: inline;
+    }
+    a{
+        cursor: url(media/image/cursor.png), auto;
+    }
+    
+
+
+    
+
+    </style>
+</head>
+<body>
+    <audio src="media/music/Surreal & The Sound Providers-04-Push On.mp3" autoplay loop class="music now" id="music"></audio>
+    <audio src="media/music/MYK-03-Stormy Night-320.mp3" class="music" id="music2" ></audio>
+    
+    <!-- <audio src="media/music/Boyz II Men-01-Relax Your Mind-320.mp3" autoplay id="music"> </audio> -->
+
+    <div id="container">
+
+        <div id="head">
+
+            <img src="media/image/musicPlay.png" class="musicImage" id="musicPlay" alt="" onclick="play();">
+            <img src="media/image/musicMute.png" class="musicImage" id="musicMute" alt="" onclick="stop();">
+            <img src="media/image/musicNext.png" class="musicImage" id="musicNext" alt="" onclick="next();">
+            
+
+            <img src="media/image/logout.png" class="logoutImage" alt="" onclick="logout();">
+
+            <img src="media/image/toggle1.png" class="toggleImage" alt="" onclick="bg1();" id="toggle1">
+            <img src="media/image/toggle2.png" class="toggleImage" alt="" onclick="bg2();" id="toggle2">
+            <br><br>
+            <p id="hi">My HomePage</p>
+            
+            
+        </div>
+
+
+        <script>
+        function bg1(){
+            $("html").css("background-image", "url('media/image/bg.jpg')");
+            $("#copyright").css("color", "white");
+            $("#container").css("background", "rgba(255, 255, 255, 0.39)");
+            $("#container").css("border", "3px solid");
+
+
+            $("#toggle1").css("display", "none");
+            $("#toggle2").css("display", "inline");
+        }
+
+        function bg2(){
+            $("html").css("background-image", "url('media/image/back.gif')");
+            $("#copyright").css("color", "black");
+            $("#container").css("background", "rgba(255, 255, 255, 0.8)");
+            $("#container").css("border", "3px dashed");
+
+            $("#toggle2").css("display", "none");
+            $("#toggle1").css("display", "inline");
+        }
+
+        function stop(){
+            var m = document.querySelector(".now");
+            m.pause();
+        }
+
+        function play(){
+            var m = document.querySelector(".now");
+            m.play();
+        }
+
+        function logout(){
+            window.close();
+            open("index.html");
+        }
+
+        function musicPlay(){
+            var m = document.querySelector(".now");
+            m.play();
+        }
+
+        function next(){
+            var m = document.querySelector(".now");
+            m.pause();
+            m.currentTime = 0;
+
+            $("#music").toggleClass("now");
+            $("#music2").toggleClass("now");
+
+            var m = document.querySelector(".now");
+            m.play();
+        }
+        </script>
+
+
+
+
+
+
+        <div id="navi">
+            <div class="menu" id="menu1">                    
+                <a href="01_mainPage.html">
+                    <img class="menuIcon" src="media/image/woman3.png" height="100%" alt="">
+                </a>
+            </div>
+            <div class="menu" id="menu2">
+                <a href="02_roadmap.html">
+                        <img class="menuIcon" src="media/image/road3.png" height="100%" alt="">
+                </a>
+            </div>
+            <div class="menu" id="menu3">
+                <a href="03_travel.html">
+                        <img class="menuIcon" src="media/image/travel.png" height="100%" alt="">
+                </a>
+            </div>
+        </div>
+
+        <div id="content">
+
+            <div id="before"><img src="media/image/before.png" class="before Image" width="100%" alt="" id="beforeImage"></div>
+            
+            <div id="cont">
+
+                <div class="intro" id="intro">
+                    <div class="card show" id="myPhoto">
+                        <img src="media/image/me.png" id="me1" class="myPicture" alt="내 사진1">
+                        <img src="media/image/me2.png" id="me2" class="myPicture" alt="내 사진2">
+                        <img src="media/image/me3.png" id="me3" class="myPicture" alt="내 사진3">
+                        <img src="media/image/me4.png" id="me4" class="myPicture" alt="내 사진4">
+                        <img src="media/image/me5.png" id="me5" class="myPicture" alt="내 사진5">
+
+
+                    </div>
+
+                    <div class="card" id="myProfile">
+                        <img src="media/image/mememe.png" width="300px" alt="">
+                        <h1>HONG JI MIN</h1>
+                        <h2>1994. 7. 23</h2>
+                        <h2>Dad Mom Younger-Sis</h2>
+                        <h2>movie music play game</h2>
+                        <h3>DAEGU - SEOUL GWANGJINGU</h3>
+                    </div>
+
+                    <div class="card" id="my">
+
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/Auyv_rpPp9c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/KI322kD7lNk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+
+                </div>
+
+                
+            </div>
+
+           
+            <div id="next"><img src="media/image/next.png" class="next Image" width="100%" alt="" id="nextImage"></div>
+
+        </div>
+        
+       
+
+
+    </div>
+
+    <script>
+    
+    $("#nextImage").click(function(){
+        if($("#my").attr("class") != "card show"){
+            $("#intro").animate({"left" : "-550px"}, 500, function(){
+
+                if($("#myPhoto").attr("class") == "card show"){
+                    $("#myPhoto").toggleClass("show");
+                    $("#myProfile").toggleClass("show");
+
+                    $("#intro").css("left", "550px").animate({"left" : "0px"}, 500)
+                    return true;
+                }
+
+                if($("#myProfile").attr("class") == "card show"){
+                    $("#myProfile").toggleClass("show");
+                    $("#my").toggleClass("show");
+
+                    $("#intro").css("left", "550px").animate({"left" : "0px"}, 500)
+                    return true;
+
+                }
+            });
+        }
+    });
+
+    $("#beforeImage").click(function(){
+        if($("#myPhoto").attr("class") != "card show"){
+            $("#intro").animate({"left" : "550px"}, 500, function(){
+
+                if($("#my").attr("class") == "card show"){
+                    $("#my").toggleClass("show");
+                    $("#myProfile").toggleClass("show");
+
+                    $("#intro").css("left", "-550px").animate({"left" : "0px"}, 500)
+                    return true;
+                }
+                if($("#myProfile").attr("class") == "card show"){
+                    $("#myProfile").toggleClass("show");
+                    $("#myPhoto").toggleClass("show");
+
+                    $("#intro").css("left", "-550px").animate({"left" : "0px"}, 500)
+                    return true;
+                }
+
+            });
+        }
+    });
+
+    
+
+    $("#me1").click(function(){
+            $("#me1").fadeOut(3000, function(){
+                $("#me2").fadeToggle(1000, function(){
+                    $("#me2").fadeOut(3000,function(){
+                        $("#me3").fadeToggle(1000, function(){
+                            $("#me3").fadeOut(3000, function(){
+                                $("#me4").fadeToggle(1000, function(){
+                                    $("#me4").fadeOut(3000, function(){
+                                        $("#me5").fadeToggle(1000, function(){
+                                            $("#me5").fadeOut(3000, function(){
+                                                $("#me1").fadeToggle(1000);
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        
+            
+    });
+
+
+
+
+    </script>
+
+    <div id="copyright">
+        <p id="right">Copyright ⓒ KH M HJM. All Rights Reserved.</p>
+        <p>190422 MON - 190425 THUR</p>
+    </div>
+
+
+    
+</body>
+</html>

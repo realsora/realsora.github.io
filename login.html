@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>login</title>
+    <script src="js/jquery-3.4.0.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Inconsolata|Kanit|Overlock|Passion+One|Muli|Overlock');
+
+    html{
+        background-color: white;
+        color: black;
+
+        background-image: url("media/image/login1.jpg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment:fixed;
+        z-index: -99999;
+
+    }
+
+    #container{
+        position: relative;
+    }
+
+    .login{
+        font-family: "Overlock", 'Muli';
+        font-size: 25px;
+        font-weight: bold;
+        margin-left: 70px;
+        margin-top: 30px;
+        background: rgba(255, 255, 255, 0);
+        
+    }
+
+    #id{
+        width: 215px;
+        height: 40px;
+        outline: none;
+        margin-left: 55px;
+        border: none;
+        border-bottom: 2px solid;
+    }
+    
+    #pwd{
+        width: 215px;
+        height: 40px;
+        outline: none;
+        margin-left: 30px;
+        border: none;
+        border-bottom: 2px solid black;
+
+    }
+    .btn{
+        margin-top: 35px;
+        width: 120px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0);
+        border: 2px dashed black;
+        border-radius: 50px;
+
+        margin-left: 65px;
+        outline: none;
+    }
+    </style>
+
+
+</head>
+<body  onresize="parent.resizeTo(500,350)" onload="parent.resizeTo(500,350)">
+    <div id="container">
+        <label for="id" class="login">ID&nbsp;</label>
+        <input type="text" name="id" id="id" class="login" required>
+        <br>
+        <label for="pwd" class="login">PWD</label>
+        <input type="password" name="pwd" id="pwd" class="login" required>
+        <br>
+        <button class="login btn" onclick="enter();">LOGIN</button>
+        <button onclick="join();" class="login btn">JOIN</button>
+    </div>
+
+    <script>
+    function join(){
+        var screenWidth = screen.availWidth;
+        var screenHeight = screen.availHeight;
+
+        var width = 500;
+        var height = 800;
+
+        open("join.html", "JOIN", "width="+width+", height="+height
+            +", top="+(screenHeight-height)/2
+            +", left="+(screenWidth-width)/2);
+    }
+
+
+
+    
+    function enter(){
+        var id = $("#id").val();
+        var pwd = $("#pwd").val();
+
+        var memberList = JSON.parse(localStorage.getItem("memberList"));
+        $.each(memberList, function(index, item){
+            if(id == item.userId){
+                if(pwd == item.userPwd){
+                    window.close();
+                    open("01_mainPage.html");
+                    return false;
+                }
+                else{
+                    alert("PWD를 다시 확인해 주세요");
+                    return false;
+                }
+            }
+        });
+
+        $("#id").css("border-bottom", "2px dashed red");
+        $("#pwd").css("border-bottom", "2px dashed red");
+
+    }
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Main</title>
+    <script src="js/jquery-3.4.0.js"></script>
+
+    
+
+
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Inconsolata|Overlock');
+    @import url('https://fonts.googleapis.com/css?family=Fauna+One');
+    @import url('https://fonts.googleapis.com/css?family=Noto+Serif+KR');
+    @import url('https://fonts.googleapis.com/css?family=Anton|Lobster');
+
+    html{
+        background-image: url("media/image/back.gif");
+        /* background-image: url("media/image/bg.jpg"); */
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment:fixed;
+        z-index: -99999;
+    }
+    #container{
+        margin: 0 auto;
+        margin-top: 50px;
+
+        width: 700px;
+        height: 600px;
+        text-align: center;
+        border: 3px dashed;
+        background: rgba(255, 255, 255, 0.616);
+    }
+
+    #copyright{
+        margin: 10px auto 0;
+        /* border: 5px solid; */
+        width: 700px;
+        height: 100px;
+
+        text-align: center;
+        padding: 10px;
+        font-family: "Inconsolata",'Overlock';
+
+        
+    }
+    #head{
+        width:700px;
+        height: 250px;
+        margin: 0px;
+
+        position: relative;
+    }
+
+    #hi{
+        font-family: "Anton";
+        font-size: 60px;
+        font-style: italic;
+        font-weight: bold;
+    }
+
+    #id{
+        margin-top: 50px;
+        margin-left: 60px;
+    }
+
+    #navi{
+        width: 700px;
+        height: 90px;
+        text-align: center;
+    }
+    .menu{
+        width: 233px;
+        height: 90px;
+        /* background: greenyellow; */
+        float: left;
+        /* padding: 10px; */
+    }
+
+    .menuIcon{
+        margin: 0 auto;
+        padding: 0;
+    }
+    
+    #content{
+        width: 700px; 
+        height: 260px;
+    }
+    
+    .Image{
+        margin-top: 250px;
+    }
+
+    #cont{
+        float: left;
+        width: 700px;
+        height: 260px;
+        /* overflow: hidden; */
+        /* position: relative; */
+
+    }
+
+    .musicImage{
+        width: 40px;
+        height: 40px;
+        float: left;
+        margin: 5px;
+        margin-top: 10px;
+    }
+
+    .toggleImage{
+        width: 50x;
+        height: 50px;
+        float: right;
+        margin-top: 10px;
+    }
+    .logoutImage{
+        width: 50px;
+        height: 50px;
+        float: right;
+        margin: 10px;
+        margin-right: 15px;
+
+    }
+    #toggle2{
+        display: none;
+    }
+
+    #travelMenu{
+        width: 600px;
+        height: 150px;
+        border:5px solid;
+        border-radius: 50px;
+        margin: 0 auto;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        cursor: pointer;
+        /* text-align: center; */
+        font-family: "Lobster";
+        font-size: 70px;
+        box-shadow: 10px 10px 1px 1px black;
+        cursor: url(media/image/cursormap.png), auto;
+    }
+    
+    #travelMap{
+        display: none;
+    }
+    .travelMenuIcon{
+        width: 100px;
+        height: 100px;
+        float: left;
+        margin: 32px;
+    }
+    .RUSSIA{
+        font-size: 60px;
+        width: 200px;
+    }
+    a{
+        cursor: url(media/image/cursor.png), auto;
+    }
+
+    </style>
+</head>
+<body>
+    <audio src="media/music/Sound Providers-08-Breath Testing.mp3" autoplay loop class="music now" id="music"></audio>
+    <audio src="media/music/Sound Providers-07-Choc Promo.mp3" class="music" id="music2" ></audio>
+        
+    <div id="container">
+
+        <div id="head">
+                <img src="media/image/musicPlay.png" class="musicImage" id="musicPlay" alt="" onclick="play();">
+                <img src="media/image/musicMute.png" class="musicImage" id="musicMute" alt="" onclick="stop();">
+                <img src="media/image/musicNext.png" class="musicImage" id="musicNext" alt="" onclick="next();">
+            
+                <img src="media/image/logout.png" class="logoutImage" alt="" onclick="logout();">
+    
+                <img src="media/image/toggle1.png" class="toggleImage" alt="" onclick="bg1();" id="toggle1">
+                <img src="media/image/toggle2.png" class="toggleImage" alt="" onclick="bg2();" id="toggle2">
+                <br><br>
+                <p id="hi">My HomePage</p>
+
+        </div>
+
+
+        <script>
+        function bg1(){
+            $("html").css("background-image", "url('media/image/bg.jpg')");
+            $("#copyright").css("color", "white");
+            $("#container").css("background", "rgba(255, 255, 255, 0.39)");
+            $("#container").css("border", "3px solid");
+
+            $("#toggle1").css("display", "none");
+            $("#toggle2").css("display", "inline");
+        }
+
+        function bg2(){
+            $("html").css("background-image", "url('media/image/back.gif')");
+            $("#copyright").css("color", "black");
+            $("#container").css("background", "rgba(255, 255, 255, 0.8)");
+            $("#container").css("border", "3px dashed");
+
+            $("#toggle2").css("display", "none");
+            $("#toggle1").css("display", "inline");
+        }
+
+        function stop(){
+            var m = document.querySelector(".now");
+            m.pause();
+        }
+
+        function play(){
+            var m = document.querySelector(".now");
+            m.play();
+        }
+
+        function logout(){
+            window.close();
+            open("index.html");
+        }
+
+        function next(){
+            var m = document.querySelector(".now");
+            m.pause();
+            m.currentTime = 0;
+
+            $("#music").toggleClass("now");
+            $("#music2").toggleClass("now");
+
+            var m = document.querySelector(".now");
+            m.play();
+        }
+        
+        </script>
+        
+        <div id="navi">
+            <div class="menu" id="menu1">                    
+                <a href="01_mainPage.html">
+                    <img class="menuIcon" src="media/image/woman3.png" height="100%" alt="">
+                </a>
+            </div>
+            <div class="menu" id="menu2">
+                <a href="02_roadmap.html">
+                        <img class="menuIcon" src="media/image/road3.png" height="100%" alt="">
+                </a>
+            </div>
+            <div class="menu" id="menu3">
+                <a href="03_travel.html">
+                        <img class="menuIcon" src="media/image/travel.png" height="100%" alt="">
+                </a>
+            </div>
+        </div>
+
+        <div id="content">
+            <div id="cont">
+                <div id="travelMenu"> 
+                    <img src="media/image/matro.png" alt="" class="travelMenuIcon"> 
+                    <span class="travelMenuIcon RUSSIA">RUSSIA</span>
+                    <img src="media/image/flag.png" alt="" class="travelMenuIcon"> 
+                </div>
+                
+                <div>
+                    <img src="media/image/travelMap.jpg" alt="여행맵" id="travelMap" usemap="#imgmap2019424105143">
+
+                    <map id="imgmap2019424105143" name="imgmap2019424105143">
+                        <area shape="rect" alt="" title="" coords="243,209,385,359" href="travelPhoto/1.html" target="_blank" onFocus="blur()"/> <!--인천공항-->
+                        <area shape="rect" alt="" title="" coords="420,240,551,382" href="travelPhoto/2.html" target="_blank" onFocus="blur()"/> <!--러샤공항-->
+                        <area shape="rect" alt="" title="" coords="253,387,408,528" href="travelPhoto/3.html" target="_blank" onFocus="blur()"/> <!--포ㄹ그라니츠나야-->
+                        <area shape="rect" alt="" title="" coords="100,376,214,517" href="travelPhoto/4.html" target="_blank" onFocus="blur()"/><!--수프라-->
+                        <area shape="rect" alt="" title="" coords="80,547,205,685" href="travelPhoto/5.html" target="_blank" onFocus="blur()"/> <!--클레버하우스-->
+                        <area shape="rect" alt="" title="" coords="433,699,564,842" href="travelPhoto/6.html" target="_blank" onFocus="blur()"/><!--해양공원-->
+                        <area shape="rect" alt="" title="" coords="267,703,396,842" href="travelPhoto/7.html" target="_blank" onFocus="blur()"/> <!--수족관-->
+                        <area shape="rect" alt="" title="" coords="95,702,224,843" href="travelPhoto/8.html" target="_blank" onFocus="blur()"/> <!--스보이-->
+                        <area shape="rect" alt="" title="" coords="80,867,208,1006" href="travelPhoto/9.html" target="_blank" onFocus="blur()"/> <!--츄다데이-->
+                        <area shape="rect" alt="" title="" coords="236,863,391,1021" href="travelPhoto/10.html" target="_blank" onFocus="blur()"/> <!--커피샵컴퍼니-->
+                        <area shape="rect" alt="" title="" coords="423,872,540,1005" href="travelPhoto/11.html" target="_blank" onFocus="blur()"/> <!--혁명광장-->
+                        <area shape="rect" alt="" title="" coords="417,1015,582,1187" href="travelPhoto/12.html" target="_blank" onFocus="blur()"/> <!--기념품샵-->
+                        <area shape="rect" alt="" title="" coords="254,1036,389,1165" href="travelPhoto/13.html" target="_blank" onFocus="blur()"/> <!--영화관-->
+                        <area shape="rect" alt="" title="" coords="99,1018,222,1160" href="travelPhoto/14.html" target="_blank" onFocus="blur()"/> <!--영원의불꽃-->
+                        <area shape="rect" alt="" title="" coords="83,1176,195,1319" href="travelPhoto/15.html" target="_blank" onFocus="blur()"/> <!--개선문-->
+                        <area shape="rect" alt="" title="" coords="219,1172,408,1322" href="travelPhoto/16.html" target="_blank" onFocus="blur()"/> <!--올드패션드-->
+                        <area shape="rect" alt="" title="" coords="429,1194,548,1321" href="travelPhoto/17.html" target="_blank" onFocus="blur()"/> <!--와인랩-->
+                        <area shape="rect" alt="" title="" coords="77,1353,231,1477" href="travelPhoto/18.html" target="_blank" onFocus="blur()"/> <!--파이브어클락-->
+                        <area shape="rect" alt="" title="" coords="88,1517,204,1641" href="travelPhoto/19.html" target="_blank" onFocus="blur()"/> <!--토바고-->
+                        <area shape="rect" alt="" title="" coords="248,1518,393,1643" href="travelPhoto/20.html" target="_blank" onFocus="blur()"/> <!--크랩마켓-->
+                        <area shape="rect" alt="" title="" coords="405,1666,594,1802" href="travelPhoto/21.html" target="_blank" onFocus="blur()"/> <!--씨디점-->
+                        <area shape="rect" alt="" title="" coords="68,1651,249,1796" href="travelPhoto/22.html" target="_blank" onFocus="blur()"/> <!--구스토-->
+                        <area shape="rect" alt="" title="" coords="69,1836,203,1961" href="travelPhoto/23.html" target="_blank" onFocus="blur()"/> <!--쇤켈-->
+                        <area shape="rect" alt="" title="" coords="433,1989,567,2126" href="travelPhoto/24.html" target="_blank" onFocus="blur()"/> <!--주마-->
+                        <area shape="rect" alt="" title="" coords="415,2296,589,2443" href="travelPhoto/25.html" target="_blank" onFocus="blur()"/> <!--해적커피-->
+                        <area shape="rect" alt="" title="" coords="262,2318,394,2443" href="travelPhoto/26.html" target="_blank" onFocus="blur()"/> <!--마린스키-->
+                        <area shape="rect" alt="" title="" coords="86,2311,225,2447" href="travelPhoto/27.html" target="_blank" onFocus="blur()"/> <!--피자샵-->
+                        <area shape="rect" alt="" title="" coords="67,2467,219,2597" href="travelPhoto/28.html" target="_blank" onFocus="blur()"/> <!--문샤이ㅏㅇㄴ바-->
+                        <area shape="rect" alt="" title="" coords="251,2778,377,2924" href="travelPhoto/29.html" target="_blank" onFocus="blur()"/> <!--스보이-->
+                        <area shape="rect" alt="" title="" coords="407,2788,556,2959" href="travelPhoto/30.html" target="_blank" onFocus="blur()"/> <!--러샤공항-->
+                        <area shape="rect" alt="" title="" coords="438,2965,571,3082" href="travelPhoto/31.html" target="_blank" onFocus="blur()"/> <!--인천공항-->
+                        <!-- Created by Online Image Map Editor (http://www.maschek.hu/imagemap/index) -->
+                    </map>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    $("#travelMenu").click(function(){
+        $("#travelMap").slideToggle(500);
+        $("#copyright").css("display", "none");
+        $("#container").css("height", "3800px");
+    });
+    </script>
+
+    <div id="copyright">
+        <p id="right">Copyright ⓒ KH M HJM. All Rights Reserved.</p>
+        <p>190422 MON - 190425 THUR</p>
+    </div>
+
+
+    
+</body>
+</html>

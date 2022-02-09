@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>homepage</title>
+    <script src="js/jquery-3.4.0.js"></script>
+    
+    <style>
+
+    @import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC');
+
+    html{
+        width: 100%;
+        height: 1000px;
+        background: -webkit-linear-gradient(to bottom, rgb(242, 231, 255), rgb(195, 122, 255));
+        background: -moz-linear-gradient(to bottom, rgb(242, 231, 255), rgb(195, 122, 255));
+        background: -o-linear-gradient(to bottom, rgb(242, 231, 255), rgb(195, 122, 255));
+        background: linear-gradient(to bottom,  rgb(242, 231, 255), rgb(195, 122, 255));
+        
+        cursor: url(media/image/cursor.png), auto;
+
+    }
+
+    .container{
+        width: 500px;
+        height: 480px;
+        margin: 0 auto;
+        margin-top: 200px;
+
+        position: relative;
+
+        /* visibility: hidden; */
+        display: none;
+    }
+
+    .visible{
+        /* visibility: visible; */
+        display: block;
+    }
+
+    .image{
+        width:500px;
+        height: 480px;
+    }
+
+    .click{
+        width: 400px;
+        height: 40px;
+        /* border: 1px solid; */
+
+        position: absolute;
+        left: 50px;
+        top: 385px;
+    }
+
+    .yes{
+        top: 390px;
+    }
+
+    .no{
+        top: 430px;
+    }
+    </style>
+</head>
+
+<body>
+     <iframe src="media/music/Coco d'Or - Just The Two Of Us.mp3" 
+        allow="autoplay" 
+        id="music" 
+        style="display:none"></iframe>
+
+    <div class="container Yes visible">
+        <div class="click yes"></div>
+        <div class="click no"></div>
+        <img src="media/image/mainYes.jpg" alt="" class="image" id="yesImage"> 
+    </div>
+
+    <div class="container No">
+        <div class="click yes"></div>
+        <div class="click no"></div>
+        <img src="media/image/mainNo.jpg" alt="" class="image" id="noImage">
+    </div>
+
+
+    <script>
+    $(".no").hover(function(){
+        $(".Yes").toggleClass("visible");
+        $(".No").toggleClass("visible");
+    }, function(){
+        $(".Yes").toggleClass("visible");
+        $(".No").toggleClass("visible");
+    });
+
+
+    $(".yes").click(function(){
+        window.close();
+        var width = 500;
+        var height = 350;
+        var screenWidth = screen.availWidth;
+        var screenHeight = screen.availHeight;
+
+
+        open("login.html", "login", "width="+width+", height="+height
+            +", top="+(screenHeight-height)/2
+            +", left="+(screenWidth-width)/2);
+    });
+
+    $(".no").click(function(){
+        var choice = confirm("종료하시겠습니까?");
+        if(choice){
+            window.close();
+        }
+    });
+    </script>
+
+</body>
+</html>

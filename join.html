@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JOIN</title>
+    <script src="js/jquery-3.4.0.js"></script>
+    <style>
+
+    @import url('https://fonts.googleapis.com/css?family=Amaranth|Kanit|Fauna+One|Mali|Overlock');
+    @import url('https://fonts.googleapis.com/css?family=Nanum+Myeongjo|Noto+Serif+KR');
+    @import url('https://fonts.googleapis.com/css?family=Inconsolata|Overlock|Passion+One');
+
+    
+    
+    html{
+        background-image: url("media/image/join.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment:fixed;
+        z-index: -99999;
+    }
+    form{
+        text-align: center;
+        font-family: 'Mali', 'Overlock' ;
+
+        padding: 15px;
+        color: rgb(102, 90, 71);
+    }
+    
+    h1{
+        text-align: center;
+        margin: 15px;
+        font-family: 'Overlock' ,'Mali';
+        font-size: 45px;
+        color: rgb(102, 90, 71);
+
+    }
+
+    label{
+        font-size: 1.7em;
+        color: rgb(71, 64, 52);
+    
+    }
+    input{
+        margin: 10px;
+        padding: 6px;
+        font-size: 1.5em;
+        color: rgb(102, 90, 71);
+
+        width: 200px;
+        background: rgba(255, 255, 255, 0);
+        outline: none;
+        border: none;
+        border-bottom: 2px solid rgb(100, 86, 64);
+        font-family: 'Overlock' , 'Mali', 'Noto Serif KR','Nanum Myeongjo' ;
+    }
+
+    #name{
+        font-family: 'Nanum Myeongjo', 'Noto Serif KR';
+
+    }
+
+
+    .radio{
+        width: 20px;
+    }
+    
+
+    #submit{
+        width: 200px;
+        height: 70px;
+        font-family: 'Overlock','Mali';
+        font-size: 40px;
+        color: rgb(102, 90, 71);
+        text-align: center;
+        background: rgba(255, 255, 255, 0);
+
+        border: 3px solid rgb(82, 71, 71);
+        box-shadow: 3px 3px 3px 3px rgb(116, 100, 100);
+        border-radius: 50px;
+        outline: none;
+    }
+
+    .phone{
+        width: 60px;
+    }
+
+    
+    </style>
+</head>
+
+
+<body>
+    <br>
+    <h1>WELCOME TO JOIN US</h1>
+    <form action="">
+        <br>
+
+        <label for="id">ID </label><input type="text" name="id" id="id"><br>
+        <label for="password">PWD </label><input type="password" name="password" id="password"><br>
+        <label for="passwordCheck">PWD check </label><input type="password" name="passwordCheck" id="passwordCheck"><br>
+        <label for="name">NAME </label><input type="name" name="name" id="name"><br>
+        <label for="birth">BIRTH </label><input type="date" name="birth" id="birth" required><br>
+        <label for="">GENDER</label> 
+        <input type="radio" class="radio" name="gender" id="f" value="여자" checked><label for="f">F</label>
+        <input type="radio" class="radio" name="gender" id="m" value="남자"><label for="m">M</label><br>
+        <label for="email">EMAIL </label><input type="email" name="email" id="email"><br>
+        <label for="tel">TEL </label>
+        <input type="text" name="tel1" id="tel1" class="phone">-
+        <input type="text" name="tel2" id="tel2" class="phone">-
+        <input type="text" name="tel3" id="tel3" class="phone"><br>
+            
+        <br><br>
+        <button type="submit" id="submit" onclick="return validate();">JOIN</button>
+    </form>
+
+
+    <script>
+
+    $("#id").keyup(function(){
+        var regExp = /^[a-z\d]{4,12}$/;
+        if(!regExp.test(document.querySelector("#id").value)){
+            $("#id").css("border-bottom", "2px dashed red");
+        }
+        else{
+            $("#id").css("border-bottom", "2px solid rgb(116, 100, 100)");
+        }
+    });
+
+    $("#password").keyup(function(){
+        var regExp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).*$/g;
+        if(!regExp.test(document.querySelector("#password").value)){
+            $("#password").css("border-bottom", "2px dashed red");
+        }
+        else{
+            $("#password").css("border-bottom", "2px solid rgb(116, 100, 100)");
+        }
+    });
+
+    $("#passwordCheck").keyup(function(){
+        var pwd = document.getElementById("password");
+        var pwdcheck = document.getElementById("passwordCheck");
+
+        if(pwd.value == pwdcheck.value){
+            $("#passwordCheck").css("border-bottom", "2px solid rgb(116, 100, 100)");
+            return true;
+            }
+        else{
+            $("#passwordCheck").css("border-bottom", "2px dashed red");
+        }
+    });
+
+    $("#name").keyup(function(){
+        var regExp = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{2,}$/;
+        if(!regExp.test(document.querySelector("#name").value)){
+            $("#name").css("border-bottom", "2px dashed red");
+        }
+        else{
+            $("#name").css("border-bottom", "2px solid rgb(116, 100, 100)");
+        }
+    });
+
+    $("#email").keyup(function(){
+        var regExp = /^[\w]{1,}@[\w]+(\.[\w]+){1,3}$/;
+        if(!regExp.test(document.querySelector("#email").value)){
+            $("#email").css("border-bottom", "2px dashed red");
+        }
+        else{
+            $("#email").css("border-bottom", "2px solid rgb(116, 100, 100)");
+        }
+    });
+
+    $("#tel1").keyup(function(){
+        var regExp = /^01[0-9]$/;
+        if(!regExp.test(document.querySelector("#tel1").value)){
+            $("#tel1").css("border-bottom", "2px dashed red");
+        }
+        else{
+            $("#tel1").css("border-bottom", "2px solid rgb(116, 100, 100)");
+        }
+    });
+
+    $("#tel2").keyup(function(){
+        var regExp =  /^[0-9]{3,4}$/;
+        if(!regExp.test(document.querySelector("#tel2").value)){
+            $("#tel2").css("border-bottom", "2px dashed red");
+        }
+        else{
+            $("#tel2").css("border-bottom", "2px solid rgb(116, 100, 100)");
+        }
+    });
+
+    $("#tel3").keyup(function(){
+        var regExp = /^[0-9]{4}$/;
+        if(!regExp.test(document.querySelector("#tel3").value)){
+            $("#tel3").css("border-bottom", "2px dashed red");
+        }
+        else{
+            $("#tel3").css("border-bottom", "2px solid rgb(116, 100, 100)");
+        }
+    });
+
+
+    function regExpTest(regExp, id, msg){
+        if(regExp.test(document.querySelector("#"+id).value)){
+            return true;
+        }
+        alert(msg);
+        return false;
+    }
+
+
+
+    function validate(){
+        //1.아이디검사
+        //아이디의 길이는 4~12글자 사이
+        var regExp1 = /^[a-z\d]{4,12}$/;
+
+        var bool = regExpTest(regExp1, "id", "사용자 아이디가 부적합합니다.");
+        if(!bool){
+            return false;
+        }
+
+        var id = $("#id").val();
+
+        var memberList = JSON.parse(localStorage.getItem("memberList"));
+        $.each(memberList, function(index, item){
+            if(id == item.userId){
+                alert("이미 존재하는 ID입니다");
+                return false;
+            }
+        });
+
+        //2.비밀번호 확인 검사
+        //숫자/문자/특수문자 포함 형태의 8~15자리 이내의 암호 정규식 
+        var regExp6 = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).*$/g;
+        //전체길이검사 /(?=^.{8,15}$)/
+        //숫자하나 반드시 포함 /(?=.*\d)/ 또는  (?=\d)
+        //영문자 반드시 포함 /(?=.*[a-zA-Z])/
+        //특수문자 반드시 포함  /(?=.*[^a-zA-Z0-9])/
+        //앞뒤에 ^.* .*$를 반드시 작성해야 한다.
+
+        if(!regExpTest(regExp6, "password", "비밀번호는 8~15자리 숫자/문자/특수문자를 포함해야합니다.")){
+            return false;
+        }
+        
+	    //비밀번호일치여부 검사
+
+        if(!isEqualPwd()){
+            return false;
+        }
+
+        function isEqualPwd(){
+        var pwd = document.getElementById("password");
+        var pwdcheck = document.getElementById("passwordCheck");
+        if(pwd.value == pwdcheck.value){
+            return true;
+            }
+        else{
+            alert("비밀번호가 일치하지 않습니다.");
+            pwd.select();
+            return false;
+            }
+        }
+
+        //3.이름검사 : 한글2글자 이상만 허용. 
+        var regExp5 = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{2,}$/;
+        var bool = regExpTest(regExp5, "name", "이름을 정확히 입력해 주세요.");
+        if(!bool){
+            return false;
+        }
+
+        //5.이메일 검사
+        // 1글자 이상(\w = [a-zA-Z0-9_], [\w-\.]) @가 나오고
+        // 1글자 이상(주소). 글자 가 1~3번 반복됨
+        if(!regExpTest(/^[\w]{1,}@[\w]+(\.[\w]+){1,3}$/, "email", "이메일 형식에 어긋납니다."))
+                return false;
+        
+        //6. 전화번호 검사
+        var regExp9 = /^01[0-9]$/;
+        var bool = regExpTest(regExp9, "tel1", "전화번호 앞자리를 정확히 입력해 주세요.");
+        if(!bool){
+            return false;
+        }
+        
+        var regExp10 = /^[0-9]{3,4}$/;
+        var bool = regExpTest(regExp10, "tel2", "전화번호 중간 자리를 정확히 입력해 주세요.");
+        if(!bool){
+            return false;
+        }
+
+        var regExp11 = /^[0-9]{4}$/;
+        var bool = regExpTest(regExp11, "tel3", "전화번호 뒷자리를 정확히 입력해 주세요.");
+        if(!bool){
+            return false;
+        }
+
+        
+
+       
+        joinMember();
+        alert("회원가입이 완료되었습니다!");
+        window.close();
+    }
+
+    function joinMember(){
+        var member = {
+            userId : $("#id").val(),
+            userPwd : $("#password").val(),
+            userName : $("#name").val(),
+            userBirth : $("#birth").val(),
+            userGender : $("[name=gender]:checked").val(),
+            userEmail : $("#email").val(),
+            userPhone : $("#tel1").val()+$("#tel2").val()+$("#tel3").val()
+        }
+
+        console.log(member);
+
+        
+        var memberList = JSON.parse(localStorage.getItem("memberList"));
+        
+        //첫 회원인 경우
+        if(memberList == null) memberList = []; 
+
+        //배열에 저장
+        memberList.push(member);
+        //JSON문자열로 변환
+        var jsonMemberList = JSON.stringify(memberList);
+
+        //localStorage에 저장
+        localStorage.setItem("memberList", jsonMemberList);
+    }
+
+
+    </script>
+    
+    
+    
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Main</title>
+    <script src="js/jquery-3.4.0.js"></script>
+
+    
+
+
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Inconsolata|Overlock');
+    @import url('https://fonts.googleapis.com/css?family=Fauna+One');
+    @import url('https://fonts.googleapis.com/css?family=Noto+Serif+KR');
+    @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400i|IBM+Plex+Serif:400,400i|Anton|Lobster');
+
+    html{
+        background-image: url("media/image/back.gif");
+        /* background-image: url("media/image/bg.jpg"); */
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment:fixed;
+        z-index: -99999;
+    }
+    #container{
+        margin: 0 auto;
+        margin-top: 50px;
+        width: 700px;
+        height: 1100px;
+        text-align: center;
+        /* border: 3px solid; */
+        border: 3px dashed;
+        background: rgba(255, 255, 255, 0.616);
+
+    }
+
+    #copyright{
+        margin: 10px auto 0;
+        /* border: 5px solid; */
+        width: 700px;
+        height: 100px;
+
+        text-align: center;
+        padding: 10px;
+        font-family: "Inconsolata",'Overlock';
+
+    }
+    #head{
+        width:700px;
+        height: 250px;
+        margin: 0px;
+
+        position: relative;
+    }
+
+
+    #hi{
+        font-family: "Anton";
+        font-size: 60px;
+        font-style: italic;
+        font-weight: bold;
+    }
+
+    #id{
+        margin-top: 50px;
+        margin-left: 60px;
+    }
+
+    .myPicture{
+        /* margin: 20px; */
+        width: 500px;
+        height: 500px;
+        margin: 0 auto;
+        margin-top: 80px;
+
+    }
+
+    #navi{
+        width: 700px;
+        height: 90px;
+        text-align: center;
+    }
+    .menu{
+        width: 233px;
+        height: 90px;
+        /* background: greenyellow; */
+        float: left;
+        /* padding: 10px; */
+    }
+
+    .menuIcon{
+        margin: 0 auto;
+        padding: 0;
+    }
+    
+    #content{
+        width: 700px; 
+        height: 760px;
+    }
+    
+
+    .Image{
+        margin-top: 250px;
+    }
+
+    #cont{
+        float: left;
+        width: 700px;
+        height: 760px;
+        overflow: hidden;
+        /* position: relative; */
+
+    }
+
+    .musicImage{
+        width: 40px;
+        height: 40px;
+        float: left;
+        margin: 5px;
+        margin-top: 10px;
+    }
+
+    .toggleImage{
+        width: 50x;
+        height: 50px;
+        float: right;
+        margin-top: 10px;
+    }
+    .logoutImage{
+        width: 50px;
+        height: 50px;
+        float: right;
+        margin: 10px;
+        margin-right: 15px;
+
+    }
+    #toggle2{
+        display: none;
+    }
+    .tree{
+        display: none;
+        cursor: url(media/image/watering.png), auto;
+        font-family: 'IBM Plex Mono', monospace;
+
+        margin-top: 50px;
+    }
+    #tree1{
+        display: block;
+    }
+    a{
+        cursor: url(media/image/cursor.png), auto;
+    }
+
+
+    
+
+    </style>
+</head>
+<body>
+    <audio src="media/music/Sound Providers-13-The Prodigal Return.mp3" autoplay loop class="music now" id="music"></audio>
+    <audio src="media/music/Sound Providers-15-Pacific Vibrations.mp3" class="music" id="music2" ></audio>
+        
+    <div id="container">
+
+        <div id="head">
+                <img src="media/image/musicPlay.png" class="musicImage" id="musicPlay" alt="" onclick="play();">
+                <img src="media/image/musicMute.png" class="musicImage" id="musicMute" alt="" onclick="stop();">
+                <img src="media/image/musicNext.png" class="musicImage" id="musicNext" alt="" onclick="next();">
+                
+    
+                <img src="media/image/logout.png" class="logoutImage" alt="" onclick="logout();">
+    
+                <img src="media/image/toggle1.png" class="toggleImage" alt="" onclick="bg1();" id="toggle1">
+                <img src="media/image/toggle2.png" class="toggleImage" alt="" onclick="bg2();" id="toggle2">
+                <br><br>
+                <p id="hi">My HomePage</p>
+
+    </div>
+
+
+        <script>
+        function bg1(){
+            $("html").css("background-image", "url('media/image/bg.jpg')");
+            $("#copyright").css("color", "white");
+            $("#container").css("background", "rgba(255, 255, 255, 0.39)");
+            $("#container").css("border", "3px solid");
+
+
+            $("#toggle1").css("display", "none");
+            $("#toggle2").css("display", "inline");
+        }
+
+        function bg2(){
+            $("html").css("background-image", "url('media/image/back.gif')");
+            $("#copyright").css("color", "black");
+            $("#container").css("background", "rgba(255, 255, 255, 0.8)");
+            $("#container").css("border", "3px dashed");
+
+            $("#toggle2").css("display", "none");
+            $("#toggle1").css("display", "inline");
+        }
+
+        function stop(){
+            var m = document.querySelector(".now");
+            m.pause();
+        }
+
+        function play(){
+            var m = document.querySelector(".now");
+            m.play();
+        }
+
+        function logout(){
+            window.close();
+            open("index.html");
+        }
+
+        function next(){
+            var m = document.querySelector(".now");
+            m.pause();
+            m.currentTime = 0;
+
+            $("#music").toggleClass("now");
+            $("#music2").toggleClass("now");
+
+            var m = document.querySelector(".now");
+            m.play();
+        }
+
+        </script>
+
+
+        <div id="navi">
+            <div class="menu" id="menu1">                    
+                <a href="01_mainPage.html">
+                    <img class="menuIcon" src="media/image/woman3.png" height="100%" alt="">
+                </a>
+            </div>
+            <div class="menu" id="menu2">
+                <a href="02_roadmap.html">
+                        <img class="menuIcon" src="media/image/road3.png" height="100%" alt="">
+                </a>
+            </div>
+            <div class="menu" id="menu3">
+                <a href="03_travel.html">
+                        <img class="menuIcon" src="media/image/travel.png" height="100%" alt="">
+                </a>
+            </div>
+        </div>
+
+        <div id="content">
+
+            <div id="cont">
+
+               
+                <div class="tree" id="tree1">
+                    <h1>Kh Academy</h1>
+                    <img src="media/image/tree1.png" alt="">
+                </div>
+                <div class="tree" id="tree2">
+                    <h1>19.01.08 ~ 19.07.30</h1><br>
+                    <img src="media/image/tree2.png" alt="">
+                </div>
+                <div class="tree" id="tree3">
+                    <h1>maintenance / solution</h1><br>
+                    <img src="media/image/tree3.png" alt="">
+                </div>
+                <div class="tree" id="tree4">
+                    <h1>PROGRAMMER</h1><br>
+                    <img src="media/image/tree4.png" alt="">
+                </div>
+                
+
+                
+            </div>
+        </div>
+        
+       
+
+
+    </div>
+
+    <script>
+    $("#tree1").click(function(){
+        $("#tree1").fadeToggle(1000, function(){
+            $("#tree2").fadeToggle(1000)
+        });
+    });
+
+    $("#tree2").click(function(){
+        $("#tree2").fadeToggle(1000, function(){
+            $("#tree3").fadeToggle(1000)
+        });
+    });
+
+    $("#tree3").click(function(){
+        $("#tree3").fadeToggle(1000, function(){
+            $("#tree4").fadeToggle(1000)
+        });
+    });
+
+    
+
+    $("#nextImage").click(function(){
+        if($("#my").attr("class") != "card show"){
+            $("#intro").animate({"left" : "-550px"}, 500, function(){
+
+                if($("#myPhoto").attr("class") == "card show"){
+                    $("#myPhoto").toggleClass("show");
+                    $("#myProfile").toggleClass("show");
+
+                    $("#intro").css("left", "550px").animate({"left" : "0px"}, 500)
+                    return true;
+                }
+
+                if($("#myProfile").attr("class") == "card show"){
+                    $("#myProfile").toggleClass("show");
+                    $("#my").toggleClass("show");
+
+                    $("#intro").css("left", "550px").animate({"left" : "0px"}, 500)
+                    return true;
+
+                }
+            });
+        }
+    });
+
+    $("#beforeImage").click(function(){
+        if($("#myPhoto").attr("class") != "card show"){
+            $("#intro").animate({"left" : "550px"}, 500, function(){
+
+                if($("#my").attr("class") == "card show"){
+                    $("#my").toggleClass("show");
+                    $("#myProfile").toggleClass("show");
+
+                    $("#intro").css("left", "-550px").animate({"left" : "0px"}, 500)
+                    return true;
+                }
+                if($("#myProfile").attr("class") == "card show"){
+                    $("#myProfile").toggleClass("show");
+                    $("#myPhoto").toggleClass("show");
+
+                    $("#intro").css("left", "-550px").animate({"left" : "0px"}, 500)
+                    return true;
+                }
+
+            });
+        }
+    });
+
+
+
+    </script>
+
+    <div id="copyright">
+        <p id="right">Copyright ⓒ KH M HJM. All Rights Reserved.</p>
+        <p>190422 MON - 190425 THUR</p>
+    </div>
+
+
+    
+</body>
+</html>
